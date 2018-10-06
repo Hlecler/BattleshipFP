@@ -1,7 +1,8 @@
 package model
+
 import scala.util.Random
 
-case class GridAI(totalHealth : Int = 0 ,cellsHit : Int = 0, display : Array[Array[String]] = Array.fill(10)(Array.fill(10)("0"))) {
+case class GridAI(totalHealth : Int = 0 ,cellsHit : Int = 0, display : Array[Array[String]] = Array.fill(10)(Array.fill(10)("0"))) extends Grid {
 
 
   def updateGridCell(x: Int, y: Int, newCellState: String): GridAI = {

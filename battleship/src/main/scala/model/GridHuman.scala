@@ -1,42 +1,42 @@
 package model
-import scala.io.StdIn.readLine
 import business.IntUtility
 
-case class GridHuman(totalHealth : Int = 0 ,cellsHit : Int = 0, display : Array[Array[String]] = Array.fill(10)(Array.fill(10)("0"))) extends IntUtility {
+import scala.io.StdIn.readLine
+case class GridHuman(totalHealth : Int = 0 ,cellsHit : Int = 0, display : Array[Array[String]] = Array.fill(10)(Array.fill(10)("0"))) extends Grid with IntUtility {
 
 
 
   def updateGridCell(x: Int, y: Int, newCellState: String):GridHuman = {
-    val newDisplay = display(x).patch(y, Array(newCellState), 1)
-    val newDisplay2 = display.patch(x, Array(newDisplay), 1)
+    val newDisplay = display(y).patch(x, Array(newCellState), 1)
+    val newDisplay2 = display.patch(y, Array(newDisplay), 1)
     this.copy(display = newDisplay2)
 
   }
 
   def setMiss(x: Int, y: Int):GridHuman = {
-    return updateGridCell(x, y, "2")
+    updateGridCell(x, y, "2")
   }
 
   def setHit(x: Int, y: Int):GridHuman = {
     val newGrid = updateGridCell(x, y, "3")
-    return newGrid.increaseHit()
+    newGrid.increaseHit()
   }
 
   def setBoat(x: Int, y: Int):GridHuman = {
     val newGrid = updateGridCell(x, y, "1")
 
-    return newGrid.increaseHealth()
+    newGrid.increaseHealth()
   }
 
   def increaseHit() : GridHuman =
   {
     val increasedCells = cellsHit +1
-    return this.copy(cellsHit = increasedCells)
+    this.copy(cellsHit = increasedCells)
   }
 
   def increaseHealth() : GridHuman =
   {
-    return this.copy(totalHealth +1)
+    this.copy(totalHealth +1)
   }
 
   def tryAddBoat(boatSize : Int) : GridHuman = {
@@ -55,18 +55,18 @@ case class GridHuman(totalHealth : Int = 0 ,cellsHit : Int = 0, display : Array[
     val x = toInt(xInput).getOrElse({println("You wrote something incorrect, restarting...")
       return None})
     x match {
-      case  x if (x <= 10 - `boatSize`) && (x >= 0) => println("Duly noted.")
-      case _ => {println("You seem to have made a mistake, restarting the boat placement procedure ...")
-        return None}
+      case `x` if (x <= 10 - `boatSize`) && (x >= 0) => println("Duly noted.")
+      case _ => println("You seem to have made a mistake, restarting the boat placement procedure ...")
+        None
     }
     println("Please select the first y coordinate of the boat between 0 and " + (10 - boatSize).toString + ".")
     val yInput = readLine()
     val y = toInt(yInput).getOrElse({println("You wrote something incorrect, restarting...")
       return None})
     y match {
-      case y if y <= 10 - `boatSize` && y >= 0 => println("Duly noted.")
-      case _ => {println("You seem to have made a mistake, restarting the boat placement procedure ...")
-        return None}
+      case `y` if y <= 10 - `boatSize` && y >= 0 => println("Duly noted.")
+      case _ => println("You seem to have made a mistake, restarting the boat placement procedure ...")
+        return None
     }
     println("Please select the alignment of the ship. \n 1: horizontal, 2: vertical.")
     val alignmentInput = readLine()
@@ -75,8 +75,8 @@ case class GridHuman(totalHealth : Int = 0 ,cellsHit : Int = 0, display : Array[
     alignment match {
       case 1 => println("You chose horizontal, duly noted.")
       case 2 => println("You chose vertical, duly noted.")
-      case _ => {println("You seem to have made a mistake, restarting the boat placement procedure ...")
-        return None}
+      case _ => println("You seem to have made a mistake, restarting the boat placement procedure ...")
+        return None
     }
 
     println("Adding boat...")

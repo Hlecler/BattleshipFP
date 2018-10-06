@@ -8,7 +8,7 @@ import scala.io.StdIn.readLine
 object Battleships extends App with IntUtility {
   val clear = "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n"
 
-  def clearScreen() = {
+  def clearScreen(): Unit = {
     println(this.clear)
   }
 
@@ -21,7 +21,7 @@ object Battleships extends App with IntUtility {
     userChoice match {
       case "1" => singlePlayerSetup()
       case "2" => multiPlayerSetup()
-      case "3" => println("autre")
+      case "3" => println("Nothing yet")
       case _ => gameIntro()
     }
   }
@@ -47,6 +47,12 @@ object Battleships extends App with IntUtility {
     val gridPlayer1 = initGridPlayer1.tryAddBoat(5).tryAddBoat(4).tryAddBoat(3).tryAddBoat(3).tryAddBoat(2)
     val initGridAI = GridAI()
     val gridAI = initGridAI.tryAddBoat(5).tryAddBoat(4).tryAddBoat(3).tryAddBoat(3).tryAddBoat(2)
+    val visionAI = GridAI()
+    val visionPlayer = GridHuman()
+
+    val game = GameAI(gridPlayer1, visionPlayer, gridAI, visionAI, 1)
+    println("Game begins now, you start !")
+    playRoundSingleplayer(game)
   }
 
   def singlePlayerAverage(): Unit = {
@@ -54,7 +60,12 @@ object Battleships extends App with IntUtility {
     val gridPlayer1 = initGridPlayer1.tryAddBoat(5).tryAddBoat(4).tryAddBoat(3).tryAddBoat(3).tryAddBoat(2)
     val initGridAI = GridAI()
     val gridAI = initGridAI.tryAddBoat(5).tryAddBoat(4).tryAddBoat(3).tryAddBoat(3).tryAddBoat(2)
+    val visionAI = GridAI()
+    val visionPlayer = GridHuman()
 
+    val game = GameAI(gridPlayer1, visionPlayer, gridAI, visionAI, 1)
+    println("Game begins now, you start !")
+    playRoundSingleplayer(game)
   }
 
   def singlePlayerHard(): Unit = {
@@ -62,8 +73,33 @@ object Battleships extends App with IntUtility {
     val gridPlayer1 = initGridPlayer1.tryAddBoat(5).tryAddBoat(4).tryAddBoat(3).tryAddBoat(3).tryAddBoat(2)
     val initGridAI = GridAI()
     val gridAI = initGridAI.tryAddBoat(5).tryAddBoat(4).tryAddBoat(3).tryAddBoat(3).tryAddBoat(2)
+    val visionAI = GridAI()
+    val visionPlayer = GridHuman()
+
+    val game = GameAI(gridPlayer1, visionPlayer, gridAI, visionAI, 1)
+    println("Game begins now, you start !")
+    playRoundSingleplayer(game)
   }
 
+  def playRoundSingleplayer(gameState: GameAI):Unit = {
+    gameState.currentPlayer match {
+      case 1 =>
+        gameState.playerBoatGrid.displayGrid()
+        println()
+        gameState.playerVisionGrid.displayGrid()
+        val shotResult = gameState.tryShooting()
+        val newGameState = gameState.copy(playerVisionGrid = shotResult._2.asInstanceOf[GridHuman], aiBoatGrid = shotResult._1.asInstanceOf[GridAI])
+        if (!newGameState.checkWin()) {
+          playRoundSingleplayer(newGameState.copy(currentPlayer = 2))
+        }
+      case 2 =>
+        val shotResult = gameState.tryShooting()
+        val newGameState = gameState.copy(aiVisionGrid = shotResult._2.asInstanceOf[GridAI], playerBoatGrid = shotResult._1.asInstanceOf[GridHuman])
+        if (!newGameState.checkWin()) {
+          playRoundSingleplayer(newGameState.copy(currentPlayer = 1))
+        }
+    }
+  }
 
   def playRoundMultiplayer(gameState: GameMultiplayer):Unit = {
     readLine()
@@ -71,7 +107,7 @@ object Battleships extends App with IntUtility {
     println("Player" + gameState.currentPlayer + " , it's your turn. Press anything to display your grids.")
     readLine()
     gameState.currentPlayer match {
-      case 1 => {
+      case 1 =>
         gameState.player1BoatGrid.displayGrid()
         println()
         gameState.player1VisionGrid.displayGrid()
@@ -80,8 +116,7 @@ object Battleships extends App with IntUtility {
         if (!newGameState.checkWin()){
           playRoundMultiplayer(newGameState.copy(currentPlayer = 2))
         }
-      }
-      case 2 => {
+      case 2 =>
         gameState.player2BoatGrid.displayGrid()
         println()
         gameState.player2VisionGrid.displayGrid()
@@ -90,7 +125,6 @@ object Battleships extends App with IntUtility {
         if (!newGameState.checkWin()){
           playRoundMultiplayer(newGameState.copy(currentPlayer = 1))
         }
-      }
     }
 
 
@@ -123,14 +157,14 @@ object Battleships extends App with IntUtility {
     val startingPlayer = toInt(startingPlayerInput).getOrElse({println("You wrote something incorrect, retrying...")
       return None})
     startingPlayer match {
-      case startingPlayer if (startingPlayer <= 2) && (startingPlayer >= 1) => println("Player " + startingPlayer + " will start.\nPress anything to start.")
-      case _ => {println("You have made a mistake, please retry.")
-      return None}
+      case `startingPlayer` if (startingPlayer <= 2) && (startingPlayer >= 1) => println("Player " + startingPlayer + " will start.\nPress anything to start.")
+      case _ => println("You have made a mistake, please retry.")
+        return None
     }
     val gridVisionPlayer1 = GridHuman()
     val gridVisionPlayer2 = GridHuman()
     val game = GameMultiplayer(gridPlayer1, gridVisionPlayer1, gridPlayer2, gridVisionPlayer2, startingPlayer)
-    return Some(game)
+    Some(game)
   }
 
   gameIntro()

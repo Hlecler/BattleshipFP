@@ -2,27 +2,16 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="579bfc05-b1fb-4186-8996-c73e827260e2" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/hydra.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/battleship/src/main/main.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/battleship/src/main/scala/business/GameAI.scala" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/battleship/src/main/scala/business/IntUtility.scala" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/battleship/src/main/scala/business/battleships.scala" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/battleship/src/main/scala/model/GridAI.scala" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/battleship/src/main/scala/model/GridHuman.scala" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/battleship/src/test/test.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/out/production/main/example/Greeting.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/out/production/main/example/Hello$.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/out/production/main/example/Hello$delayedInit$body.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/out/production/main/example/Hello.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/battleshiplecler/build.sbt" beforeDir="false" afterPath="$PROJECT_DIR$/battleship/build.sbt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/battleshiplecler/project/Dependencies.scala" beforeDir="false" afterPath="$PROJECT_DIR$/battleship/project/Dependencies.scala" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/battleshiplecler/project/build.properties" beforeDir="false" afterPath="$PROJECT_DIR$/battleship/project/build.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/battleshiplecler/src/main/scala/example/Hello.scala" beforeDir="false" afterPath="$PROJECT_DIR$/battleship/src/main/scala/example/Hello.scala" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/battleshiplecler/src/test/scala/example/HelloSpec.scala" beforeDir="false" afterPath="$PROJECT_DIR$/battleship/src/test/scala/example/HelloSpec.scala" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/dictionaries/Hyross.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/scala_compiler.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/battleship/src/main/scala/model/grid.scala" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/battleship/src/main/scala/business/GameAI.scala" beforeDir="false" afterPath="$PROJECT_DIR$/battleship/src/main/scala/business/GameAI.scala" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/battleship/src/main/scala/business/battleships.scala" beforeDir="false" afterPath="$PROJECT_DIR$/battleship/src/main/scala/business/battleships.scala" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/battleship/src/main/scala/model/GridAI.scala" beforeDir="false" afterPath="$PROJECT_DIR$/battleship/src/main/scala/model/GridAI.scala" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/battleship/src/main/scala/model/GridHuman.scala" beforeDir="false" afterPath="$PROJECT_DIR$/battleship/src/main/scala/model/GridHuman.scala" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/battleship/src/test/test.iml" beforeDir="false" afterPath="$PROJECT_DIR$/battleship/src/test/test.iml" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -44,25 +33,29 @@
       <usages-collector id="statistics.file.extensions.open">
         <counts>
           <entry key="iml" value="1" />
-          <entry key="scala" value="12" />
+          <entry key="sbt" value="1" />
+          <entry key="scala" value="16" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.open">
         <counts>
           <entry key="IDEA_MODULE" value="1" />
-          <entry key="Scala" value="12" />
+          <entry key="Scala" value="16" />
+          <entry key="sbt" value="1" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
           <entry key="java" value="13" />
-          <entry key="scala" value="10269" />
+          <entry key="scala" value="11539" />
+          <entry key="txt" value="21" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
           <entry key="JAVA" value="13" />
-          <entry key="Scala" value="10269" />
+          <entry key="PLAIN_TEXT" value="21" />
+          <entry key="Scala" value="11539" />
         </counts>
       </usages-collector>
     </session>
@@ -73,19 +66,22 @@
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/battleship/src/main/main.iml">
+        <entry file="file://$PROJECT_DIR$/battleship/src/main/scala/business/Battleships.scala">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="187">
-              <caret line="11" column="9" selection-start-line="11" selection-start-column="9" selection-end-line="11" selection-end-column="9" />
+            <state relative-caret-position="7">
+              <caret line="80" column="31" selection-start-line="80" selection-start-column="31" selection-end-line="80" selection-end-column="31" />
+              <folding>
+                <element signature="e#18#40#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/battleship/src/main/scala/business/Battleships.scala">
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/battleship/src/main/scala/business/GameMultiplayer.scala">
           <provider selected="true" editor-type-id="text-editor">
-            <state>
-              <caret line="114" column="96" selection-start-line="114" selection-start-column="96" selection-end-line="114" selection-end-column="96" />
+            <state relative-caret-position="85">
+              <caret line="5" selection-start-line="5" selection-end-line="5" />
               <folding>
                 <element signature="e#18#40#0" expanded="true" />
               </folding>
@@ -94,31 +90,13 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/battleship/src/main/scala/business/GameMultiplayer.scala">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="765">
-              <caret line="45" column="19" lean-forward="true" selection-start-line="45" selection-start-column="19" selection-end-line="45" selection-end-column="19" />
-              <folding>
-                <element signature="e#18#48#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/battleship/src/main/scala/business/GameAI.scala">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="34">
-              <caret line="2" column="6" selection-start-line="2" selection-start-column="6" selection-end-line="2" selection-end-column="6" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/battleship/src/main/scala/model/GridAI.scala">
-          <provider selected="true" editor-type-id="text-editor">
-            <state>
-              <caret column="13" lean-forward="true" selection-start-column="13" selection-end-column="13" />
+            <state relative-caret-position="132">
+              <caret line="31" column="15" selection-start-line="31" selection-start-column="15" selection-end-line="31" selection-end-column="15" />
+              <folding>
+                <element signature="e#17#55#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -126,11 +104,29 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/battleship/src/main/scala/model/GridHuman.scala">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="480">
-              <caret line="99" column="27" lean-forward="true" selection-start-line="99" selection-start-column="27" selection-end-line="99" selection-end-column="27" />
+            <state relative-caret-position="932">
+              <caret line="100" selection-start-line="100" selection-end-line="100" />
               <folding>
-                <element signature="e#14#44#0" expanded="true" />
+                <element signature="e#14#40#0" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/battleship/src/main/scala/model/GridAI.scala">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="34">
+              <caret line="2" selection-start-line="2" selection-end-line="2" selection-end-column="24" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/battleship/src/main/scala/model/Grid.scala">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="68">
+              <caret line="4" lean-forward="true" selection-start-line="4" selection-end-line="4" />
             </state>
           </provider>
         </entry>
@@ -156,6 +152,9 @@
       <find>setBoat</find>
       <find>newGrid</find>
       <find>setHit</find>
+      <find>Seem to have made</find>
+      <find>Random</find>
+      <find>display</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -168,9 +167,14 @@
         <option value="$PROJECT_DIR$/battleship/src/main/scala/model/grid.scala" />
         <option value="$PROJECT_DIR$/battleship/src/main/scala/business/Game.scala" />
         <option value="$PROJECT_DIR$/battleship/src/main/scala/business/battleships.scala" />
-        <option value="$PROJECT_DIR$/battleship/src/main/scala/business/GameMultiplayer.scala" />
+        <option value="$PROJECT_DIR$/battleship/src/test/scala/example/HelloSpec.scala" />
+        <option value="$PROJECT_DIR$/battleship/src/main/scala/business/Grid.scala" />
         <option value="$PROJECT_DIR$/battleship/src/main/scala/model/GridAI.scala" />
+        <option value="$PROJECT_DIR$/battleship/src/main/scala/model/Grid.scala" />
         <option value="$PROJECT_DIR$/battleship/src/main/scala/model/GridHuman.scala" />
+        <option value="$PROJECT_DIR$/battleship/src/main/scala/business/GameMultiplayer.scala" />
+        <option value="$PROJECT_DIR$/battleship/src/main/scala/business/GameAI.scala" />
+        <option value="$PROJECT_DIR$/battleship/src/main/scala/business/Battleships.scala" />
       </list>
     </option>
   </component>
@@ -180,7 +184,7 @@
       <select />
     </treeState>
   </component>
-  <component name="ProjectFrameBounds" extendedState="6">
+  <component name="ProjectFrameBounds" extendedState="7">
     <option name="x" value="207" />
     <option name="y" value="316" />
     <option name="width" value="1750" />
@@ -205,6 +209,11 @@
               <item name="BattleshipFP" type="58d84e3e:PackageViewProjectNode" />
               <item name="main" type="616d4139:PackageViewModuleNode" />
               <item name="business" type="1f31426a:PackageElementNode" />
+            </path>
+            <path>
+              <item name="BattleshipFP" type="58d84e3e:PackageViewProjectNode" />
+              <item name="main" type="616d4139:PackageViewModuleNode" />
+              <item name="model" type="1f31426a:PackageElementNode" />
             </path>
             <path>
               <item name="BattleshipFP" type="58d84e3e:PackageViewProjectNode" />
@@ -256,7 +265,16 @@
     </panes>
   </component>
   <component name="PropertiesComponent">
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1538811375805" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1538819239364" />
+    <property name="project.structure.last.edited" value="Global Libraries" />
+    <property name="project.structure.proportion" value="0.0" />
+    <property name="project.structure.side.proportion" value="0.2" />
+    <property name="run.code.analysis.last.selected.profile" value="pProject Default" />
+  </component>
+  <component name="RecentsManager">
+    <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
+      <recent name="model" />
+    </key>
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -307,6 +325,14 @@
       <option name="presentableId" value="Default" />
       <updated>1538328805878</updated>
     </task>
+    <task id="LOCAL-00001" summary="multiplayer working">
+      <created>1538811400492</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1538811400492</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TodoView">
@@ -319,14 +345,15 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="-7" y="-7" width="1550" height="838" extended-state="6" />
+    <frame x="-7" y="-7" width="1550" height="838" extended-state="7" />
+    <editor active="true" />
     <layout>
       <window_info id="Designer" order="0" />
       <window_info id="UI Designer" order="1" />
       <window_info id="Capture Tool" order="2" />
-      <window_info id="Favorites" order="3" sideWeight="0.50405186" side_tool="true" visible="true" weight="0.22818792" />
+      <window_info id="Favorites" order="3" sideWeight="0.5035461" side_tool="true" visible="true" weight="0.22818792" />
       <window_info id="Image Layers" order="4" />
-      <window_info active="true" content_ui="combo" id="Project" order="5" sideWeight="0.49594814" visible="true" weight="0.22818792" />
+      <window_info content_ui="combo" id="Project" order="5" sideWeight="0.4964539" visible="true" weight="0.22818792" />
       <window_info id="Structure" order="6" side_tool="true" weight="0.25" />
       <window_info anchor="bottom" id="Terminal" order="0" weight="0.32917318" />
       <window_info anchor="bottom" id="Event Log" order="1" side_tool="true" />
@@ -334,7 +361,7 @@
       <window_info anchor="bottom" id="Version Control" order="3" show_stripe_button="false" />
       <window_info anchor="bottom" id="Message" order="4" />
       <window_info anchor="bottom" id="Find" order="5" weight="0.32907802" />
-      <window_info anchor="bottom" id="Run" order="6" visible="true" weight="0.1248227" />
+      <window_info anchor="bottom" id="Run" order="6" weight="0.43687943" />
       <window_info anchor="bottom" id="Debug" order="7" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="8" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="9" weight="0.4" />
@@ -345,12 +372,20 @@
       <window_info anchor="right" id="Maven Projects" order="3" weight="0.3295302" />
       <window_info anchor="right" id="Palette" order="4" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="5" type="SLIDING" weight="0.4" />
-      <window_info anchor="right" id="Ant Build" order="6" weight="0.25" />
+      <window_info anchor="right" id="Ant Build" order="6" weight="0.24966443" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="7" weight="0.25" />
     </layout>
   </component>
   <component name="VcsContentAnnotationSettings">
     <option name="myLimit" value="2678400000" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="multiplayer working" />
+    <option name="LAST_COMMIT_MESSAGE" value="multiplayer working" />
+  </component>
+  <component name="antWorkspaceConfiguration">
+    <option name="IS_AUTOSCROLL_TO_SOURCE" value="false" />
+    <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/battleship/src/test/test.iml">
@@ -370,13 +405,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/battleship/src/main/main.iml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="187">
-          <caret line="11" column="9" selection-start-line="11" selection-start-column="9" selection-end-line="11" selection-end-column="9" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/battleship/src/main/scala/business/IntUtility.scala">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="119">
@@ -384,7 +412,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/battleship/src/main/scala/model/grid.scala">
+    <entry file="file://$PROJECT_DIR$/battleship/src/main/scala/model/Grid.scala">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="17">
           <caret line="1" lean-forward="true" selection-start-line="1" selection-end-line="1" />
@@ -401,10 +429,62 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/battleship/src/main/scala/business/Battleships.scala">
+    <entry file="file://$PROJECT_DIR$/battleship/build.sbt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="170">
+          <caret line="10" column="39" selection-start-line="10" selection-start-column="39" selection-end-line="10" selection-end-column="39" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/battleship/project/Dependencies.scala">
       <provider selected="true" editor-type-id="text-editor">
         <state>
-          <caret line="114" column="96" selection-start-line="114" selection-start-column="96" selection-end-line="114" selection-end-column="96" />
+          <caret column="7" selection-start-column="7" selection-end-column="7" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/battleship/src/test/scala/example/HelloSpec.scala">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret column="15" selection-start-column="15" selection-end-column="15" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/battleship/src/main/main.iml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="187">
+          <caret line="11" column="9" selection-start-line="11" selection-start-column="9" selection-end-line="11" selection-end-column="9" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/battleship/src/main/scala/model/Grid.scala">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="68">
+          <caret line="4" lean-forward="true" selection-start-line="4" selection-end-line="4" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/battleship/src/main/scala/model/GridAI.scala">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="34">
+          <caret line="2" selection-start-line="2" selection-end-line="2" selection-end-column="24" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/battleship/src/main/scala/business/GameAI.scala">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="132">
+          <caret line="31" column="15" selection-start-line="31" selection-start-column="15" selection-end-line="31" selection-end-column="15" />
+          <folding>
+            <element signature="e#17#55#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/battleship/src/main/scala/business/Battleships.scala">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="7">
+          <caret line="80" column="31" selection-start-line="80" selection-start-column="31" selection-end-line="80" selection-end-column="31" />
           <folding>
             <element signature="e#18#40#0" expanded="true" />
           </folding>
@@ -413,37 +493,99 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/battleship/src/main/scala/model/GridHuman.scala">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="480">
-          <caret line="99" column="27" lean-forward="true" selection-start-line="99" selection-start-column="27" selection-end-line="99" selection-end-column="27" />
+        <state relative-caret-position="932">
+          <caret line="100" selection-start-line="100" selection-end-line="100" />
           <folding>
-            <element signature="e#14#44#0" expanded="true" />
+            <element signature="e#14#40#0" expanded="true" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/battleship/src/main/scala/model/GridAI.scala">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret column="13" lean-forward="true" selection-start-column="13" selection-end-column="13" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/battleship/src/main/scala/business/GameMultiplayer.scala">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="765">
-          <caret line="45" column="19" lean-forward="true" selection-start-line="45" selection-start-column="19" selection-end-line="45" selection-end-column="19" />
+        <state relative-caret-position="85">
+          <caret line="5" selection-start-line="5" selection-end-line="5" />
           <folding>
-            <element signature="e#18#48#0" expanded="true" />
+            <element signature="e#18#40#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/battleship/src/main/scala/business/GameAI.scala">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="34">
-          <caret line="2" column="6" selection-start-line="2" selection-start-column="6" selection-end-line="2" selection-end-column="6" />
-        </state>
-      </provider>
-    </entry>
+  </component>
+  <component name="masterDetails">
+    <states>
+      <state key="ArtifactsStructureConfigurable.UI">
+        <settings>
+          <artifact-editor />
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="FacetStructureConfigurable.UI">
+        <settings>
+          <last-edited>No facets are configured</last-edited>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="GlobalLibrariesConfigurable.UI">
+        <settings>
+          <last-edited>scala-sdk-2.12.6</last-edited>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="JdkListConfigurable.UI">
+        <settings>
+          <last-edited>1.8</last-edited>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="ModuleStructureConfigurable.UI">
+        <settings>
+          <last-edited>main</last-edited>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+                <option value="0.6" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="ProjectLibrariesConfigurable.UI">
+        <settings>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+    </states>
   </component>
 </project>
