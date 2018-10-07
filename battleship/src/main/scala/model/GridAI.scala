@@ -2,12 +2,19 @@ package model
 
 import scala.util.Random
 
-case class GridAI(totalHealth : Int = 0 ,cellsHit : Int = 0, display : Array[Array[String]] = Array.fill(10)(Array.fill(10)("0"))) extends Grid {
+/**
+  *
+  * @param memoryCoordinates
+  * @param missCount
+  * @param totalHealth
+  * @param cellsHit
+  * @param display
+  */
+case class GridAI(var memoryCoordinates : Array[Int] = Array(), missCount : Int = 0, totalHealth : Int = 0 ,cellsHit : Int = 0, display : Array[Array[String]] = Array.fill(10)(Array.fill(10)("0"))) extends Grid {
 
-
-  def updateGridCell(x: Int, y: Int, newCellState: String): GridAI = {
-    val newDisplay = display(x).patch(y, Array(newCellState), 1)
-    val newDisplay2 = display.patch(x, Array(newDisplay), 1)
+  def updateGridCell(x: Int, y: Int, newCellState: String):GridAI = {
+    val newDisplay = display(y).patch(x, Array(newCellState), 1)
+    val newDisplay2 = display.patch(y, Array(newDisplay), 1)
     this.copy(display = newDisplay2)
 
   }
@@ -33,7 +40,11 @@ case class GridAI(totalHealth : Int = 0 ,cellsHit : Int = 0, display : Array[Arr
   }
 
   def increaseHealth(): GridAI = {
-    this.copy(totalHealth + 1)
+    this.copy(totalHealth = totalHealth + 1)
+  }
+
+  def missThreshold(): Boolean ={
+    missCount > 5
   }
 
   def tryAddBoat(boatSize: Int): GridAI = {

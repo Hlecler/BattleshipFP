@@ -50,7 +50,7 @@ object Battleships extends App with IntUtility {
     val visionAI = GridAI()
     val visionPlayer = GridHuman()
 
-    val game = GameAI(gridPlayer1, visionPlayer, gridAI, visionAI, 1)
+    val game = GameAI(1, gridPlayer1, visionPlayer, gridAI, visionAI, 1)
     println("Game begins now, you start !")
     playRoundSingleplayer(game)
   }
@@ -63,7 +63,7 @@ object Battleships extends App with IntUtility {
     val visionAI = GridAI()
     val visionPlayer = GridHuman()
 
-    val game = GameAI(gridPlayer1, visionPlayer, gridAI, visionAI, 1)
+    val game = GameAI(2, gridPlayer1, visionPlayer, gridAI, visionAI, 1)
     println("Game begins now, you start !")
     playRoundSingleplayer(game)
   }
@@ -76,7 +76,7 @@ object Battleships extends App with IntUtility {
     val visionAI = GridAI()
     val visionPlayer = GridHuman()
 
-    val game = GameAI(gridPlayer1, visionPlayer, gridAI, visionAI, 1)
+    val game = GameAI(3, gridPlayer1, visionPlayer, gridAI, visionAI, 1)
     println("Game begins now, you start !")
     playRoundSingleplayer(game)
   }

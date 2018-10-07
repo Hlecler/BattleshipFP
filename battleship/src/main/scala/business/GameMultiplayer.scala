@@ -58,16 +58,16 @@ case class GameMultiplayer(player1BoatGrid : GridHuman, player1VisionGrid : Grid
 
   def verifyShot(x : Int, y : Int, playerBoat : GridHuman, visionGrid : GridHuman): Option[(GridHuman, GridHuman)] = {
 
-    if (playerBoat.display(x)(y) == "1") {
+    if (playerBoat.display(y)(x) == "1") {
       val newPlayerBoat = playerBoat.setHit(x,y)
       val newVisionGrid = visionGrid.setHit(x,y)
-      println("Hit !")
+      println("Shot fired in " +x +","+ y +" hit !")
       Some((newPlayerBoat, newVisionGrid))
     }
-    else if(playerBoat.display(x)(y) == "0") {
+    else if(playerBoat.display(y)(x) == "0") {
       val newPlayerBoat = playerBoat.setMiss(x,y)
       val newVisionGrid = visionGrid.setMiss(x,y)
-      println("Missed !")
+      println("Shot fired in " +x +","+ y +" missed !")
       Some((newPlayerBoat, newVisionGrid))
     }
     else {

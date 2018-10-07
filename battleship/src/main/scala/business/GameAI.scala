@@ -3,7 +3,7 @@ import model.{Grid, GridAI, GridHuman}
 
 import scala.io.StdIn.readLine
 import scala.util.Random
-case class GameAI(playerBoatGrid : GridHuman, playerVisionGrid : GridHuman, aiBoatGrid : GridAI, aiVisionGrid : GridAI, currentPlayer : Int) extends IntUtility {
+case class GameAI(difficulty : Int = 1, playerBoatGrid : GridHuman, playerVisionGrid : GridHuman, aiBoatGrid : GridAI, aiVisionGrid : GridAI, currentPlayer : Int) extends IntUtility {
 
   def checkWin(): Boolean ={
     if(playerBoatGrid.cellsHit == playerBoatGrid.totalHealth) {
@@ -23,8 +23,11 @@ case class GameAI(playerBoatGrid : GridHuman, playerVisionGrid : GridHuman, aiBo
     if (currentPlayer == 1){
       shootProcedurePlayer(this.playerVisionGrid,this.aiBoatGrid).getOrElse(tryShooting())
     }
-    else {
+    else if (difficulty == 1){
       shootProcedureAIEasy(this.aiVisionGrid,this.playerBoatGrid).getOrElse(tryShooting())
+    }
+    else {
+      shootProcedureAINormalHard(this.aiVisionGrid,this.playerBoatGrid).getOrElse(tryShooting())
     }
   }
 
@@ -53,16 +56,16 @@ case class GameAI(playerBoatGrid : GridHuman, playerVisionGrid : GridHuman, aiBo
 
   def verifyShot(x : Int, y : Int, aiBoat : GridAI, visionGrid : GridHuman): Option[(Grid, Grid)] = {
 
-    if (aiBoat.display(x)(y) == "1") {
+    if (aiBoat.display(y)(x) == "1") {
       val newAIBoat = aiBoat.setHit(x,y)
       val newVisionGrid = visionGrid.setHit(x,y)
-      println("Hit !")
+      println("Shot fired in " +x +","+ y +" hit !")
       Some((newAIBoat, newVisionGrid))
     }
-    else if(aiBoat.display(x)(y) == "0") {
+    else if(aiBoat.display(y)(x) == "0") {
       val newAIBoat = aiBoat.setMiss(x,y)
       val newVisionGrid = visionGrid.setMiss(x,y)
-      println("Missed !")
+      println("Shot fired in " +x +","+ y +" missed !")
       Some((newAIBoat, newVisionGrid))
     }
     else {
@@ -77,22 +80,98 @@ case class GameAI(playerBoatGrid : GridHuman, playerVisionGrid : GridHuman, aiBo
     Some(verifyShotAI(x, y, playerBoatGrid, aiVisionGrid)).getOrElse(shootProcedureAIEasy(aiVisionGrid, playerBoatGrid))
   }
 
+  def shootProcedureAINormalHard(aiVisionGrid: GridAI, playerBoatGrid: GridHuman): Option[(Grid, Grid)] = {
+    if(aiVisionGrid.memoryCoordinates.isEmpty){
+      val x = Random.nextInt(10)
+      val y = Random.nextInt(10)
+      Some(verifyShotAI(x, y, playerBoatGrid, aiVisionGrid)).getOrElse(shootProcedureAINormalHard(aiVisionGrid, playerBoatGrid))
+    }
+    else {
+      val x = aiVisionGrid.memoryCoordinates.head
+      val y = aiVisionGrid.memoryCoordinates.tail.head
+      val newMemory = aiVisionGrid.memoryCoordinates.drop(2)
+      val newVision = aiVisionGrid.copy(memoryCoordinates = newMemory)
+      this.aiVisionGrid.memoryCoordinates = newMemory
+      Some(verifyShotAI(x, y, playerBoatGrid, newVision)).getOrElse(shootProcedureAINormalHard(newVision, playerBoatGrid))
+    }
+  }
+
+
+
   def verifyShotAI(x : Int, y : Int, playerBoat : GridHuman, visionGrid : GridAI): Option[(Grid, Grid)] = {
 
-    if (playerBoat.display(x)(y) == "1") {
+    if (playerBoat.display(y)(x) == "1") {
       val newPlayerBoat = playerBoat.setHit(x,y)
       val newVisionGrid = visionGrid.setHit(x,y)
-      println("Hit !")
-      Some((newPlayerBoat, newVisionGrid))
+      val newVisionGrid2 = addMemoryCoord(x,y, newVisionGrid)
+      val newVisionGrid3 = newVisionGrid2.copy(missCount = 0)
+      println("Shot fired in " +x +","+ y +" hit !")
+      Some((newPlayerBoat, newVisionGrid3))
     }
-    else if(playerBoat.display(x)(y) == "0") {
+    else if(playerBoat.display(y)(x) == "0") {
       val newPlayerBoat = playerBoat.setMiss(x,y)
       val newVisionGrid = visionGrid.setMiss(x,y)
-      println("Missed !")
-      Some((newPlayerBoat, newVisionGrid))
+
+      val newVisionGrid2 = newVisionGrid.copy(missCount = newVisionGrid.missCount + 1)
+      if(difficulty == 3){
+        if (newVisionGrid2.missThreshold()){
+          None
+        }
+        else {
+          println("Shot fired in " +x +","+ y +" missed !")
+          Some((newPlayerBoat, newVisionGrid2))
+        }
+      }
+      else{
+        println("Shot fired in " +x +","+ y +" missed !")
+        Some((newPlayerBoat, newVisionGrid2))
+      }
+
     }
     else {
       None
     }
   }
+  def addMemoryCoord(x: Int, y: Int, newVisionGrid: GridAI):GridAI = {
+    val newVisionGrid1 = checkCellLeft(x, y, newVisionGrid)
+    val newVisionGrid2 = checkCellRight(x, y, newVisionGrid1)
+    val newVisionGrid3 = checkCellUp(x, y, newVisionGrid2)
+    val newVisionGrid4 = checkCellDown(x, y, newVisionGrid3)
+    newVisionGrid4
+  }
+
+  def checkCellLeft(x: Int, y: Int, visionGrid: GridAI) : GridAI = {
+    if(x-1 >= 0){
+      val newCoords = Array(x-1, y)
+      val newMemory = newCoords ++ visionGrid.memoryCoordinates
+      visionGrid.copy(memoryCoordinates = newMemory)
+    }
+    else visionGrid
+  }
+
+  def checkCellRight(x: Int, y: Int, visionGrid: GridAI) : GridAI = {
+    if(x+1 <= 9){
+      val newCoords = Array(x+1, y)
+      val newMemory = newCoords ++ visionGrid.memoryCoordinates
+      visionGrid.copy(memoryCoordinates = newMemory)
+    }
+    else visionGrid
+  }
+  def checkCellUp(x: Int, y: Int, visionGrid: GridAI) : GridAI = {
+    if(y-1 >= 0){
+      val newCoords = Array(x, y-1)
+      val newMemory = newCoords ++ visionGrid.memoryCoordinates
+      visionGrid.copy(memoryCoordinates = newMemory)
+    }
+    else visionGrid
+  }
+  def checkCellDown(x: Int, y: Int, visionGrid: GridAI) : GridAI = {
+    if(y+1 <= 9){
+      val newCoords = Array(x, y+1)
+      val newMemory = newCoords ++ visionGrid.memoryCoordinates
+      visionGrid.copy(memoryCoordinates = newMemory)
+    }
+    else visionGrid
+  }
+
 }
