@@ -2,10 +2,23 @@ package model
 import business.IntUtility
 
 import scala.io.StdIn.readLine
+
+/**
+  * The class that represents the grid of a player.
+  * @param totalHealth The number of boats cells in the grid
+  * @param cellsHit The number of boats cells hit in the grid
+  * @param display The array of array of strings that represents the grid.
+  */
 case class GridHuman(totalHealth : Int = 0 ,cellsHit : Int = 0, display : Array[Array[String]] = Array.fill(10)(Array.fill(10)("0"))) extends Grid with IntUtility {
 
 
-
+  /**
+    * Updates the grid state.
+    * @param x The x coordinate of the cell that needs to be changed.
+    * @param y The y coordinate of the cell that needs to be changed.
+    * @param newCellState 1 for boat, 2 for miss, 3 for hit.
+    * @return the new grid state.
+    */
   def updateGridCell(x: Int, y: Int, newCellState: String):GridHuman = {
     val newDisplay = display(y).patch(x, Array(newCellState), 1)
     val newDisplay2 = display.patch(y, Array(newDisplay), 1)
@@ -13,40 +26,71 @@ case class GridHuman(totalHealth : Int = 0 ,cellsHit : Int = 0, display : Array[
 
   }
 
+  /**
+    * Change a cell of the grid to Miss.
+    * @param x The x coordinate of the cell that needs to be changed.
+    * @param y The y coordinate of the cell that needs to be changed.
+    * @return the new grid state.
+    */
   def setMiss(x: Int, y: Int):GridHuman = {
     updateGridCell(x, y, "2")
   }
 
+  /**
+    * Change a cell of the grid to Hit.
+    * @param x The x coordinate of the cell that needs to be changed.
+    * @param y The y coordinate of the cell that needs to be changed.
+    * @return the new grid state.
+    */
   def setHit(x: Int, y: Int):GridHuman = {
     val newGrid = updateGridCell(x, y, "3")
     newGrid.increaseHit()
   }
 
+  /**
+    * Change a cell of the grid to untouched boat.
+    * @param x The x coordinate of the cell that needs to be changed.
+    * @param y The y coordinate of the cell that needs to be changed.
+    * @return The new grid state.
+    */
   def setBoat(x: Int, y: Int):GridHuman = {
     val newGrid = updateGridCell(x, y, "1")
 
     newGrid.increaseHealth()
   }
 
+  /**
+    * Increase the hit counter of the grid.
+    * @return The new grid state.
+    */
   def increaseHit() : GridHuman =
   {
     val increasedCells = cellsHit +1
     this.copy(cellsHit = increasedCells)
   }
 
+  /**
+    * Increase the total health counter of the grid.
+    * @return The new grid state.
+    */
   def increaseHealth() : GridHuman =
   {
     this.copy(totalHealth +1)
   }
 
+  /**
+    * Returns the grid with a boat added to it
+    * @param boatSize The size of the boat that needs to be added.
+    * @return The new grid state with the boat added.
+    */
   def tryAddBoat(boatSize : Int) : GridHuman = {
     addBoatProcedure(boatSize).getOrElse(tryAddBoat(boatSize))
   }
 
   /**
-    * Tries to add a boat to the current grid.
-    * @param boatSize
-    * @return
+    * The procedure to add a boat to the grid according to where the player wants it.
+    * @param boatSize The size of the boat that needs to be added.
+    * @return The new grid if the boat was correctly added, None if it didn't work.
     */
   def addBoatProcedure(boatSize : Int) : Option[GridHuman] = {
     println("\n You are about to add a boat of size " + boatSize+".")
@@ -83,19 +127,22 @@ case class GridHuman(totalHealth : Int = 0 ,cellsHit : Int = 0, display : Array[
     recursAddBoat(x,y, boatSize, alignment, this)
   }
 
+  /**
+    * Displays the current grid in the console.
+    */
   def displayGrid(): Unit = {
     print("0 : Nothing / Unknown \n1: Unharmed boat \n2: Miss \n3: Hit")
     display.foreach(x => {println("")
       x.foreach(y => print(y))})
   }
   /**
-    *
-    * @param x
-    * @param y
-    * @param size
-    * @param alignment
-    * @param grid
-    * @return
+    * The recursive function that adds the boat to the grid, cell by cell.
+    * @param x The x coordinate of the cell that will have a boat state.
+    * @param y The y coordinate of the cell that will have a boat state.
+    * @param size The remaining size of the boat that has yet to be added.
+    * @param alignment 1 for horizontal, 2 for vertical.
+    * @param grid The grid that will have a boat added to it.
+    * @return The new grid with the cell added, or None if the boat couldn't be added.
     */
   def recursAddBoat(x : Int, y : Int, size : Int, alignment : Int, grid : GridHuman) : Option[GridHuman] = {
     if (grid.display(x)(y) != "1") {

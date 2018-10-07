@@ -5,13 +5,20 @@ import model.GridAI
 
 import scala.io.StdIn.readLine
 
+
 object Battleships extends App with IntUtility {
   val clear = "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n"
 
+  /**
+    * Clears the console.
+    */
   def clearScreen(): Unit = {
     println(this.clear)
   }
 
+  /**
+    * Function called at the start, introduces the game and asks the player what he wants to do.
+   */
   def gameIntro()
   {
     println("Welcome to battleships")
@@ -27,8 +34,9 @@ object Battleships extends App with IntUtility {
   }
 
 
-
-
+  /**
+    * Asks the player which AI difficulty he wants to choose.
+    */
   def singlePlayerSetup() {
     println("You chose to play alone. Choose an AI level.")
     println("1: Easy, 2: Average, 3: Hard")
@@ -41,6 +49,9 @@ object Battleships extends App with IntUtility {
     }
   }
 
+  /**
+    * Initializes the player and easy AI grids and starts the game.
+    */
   def singlePlayerEasy(): Unit = {
     clearScreen()
     val initGridPlayer1 = GridHuman()
@@ -55,6 +66,9 @@ object Battleships extends App with IntUtility {
     playRoundSingleplayer(game)
   }
 
+  /**
+    * Initializes the player and average AI grids and starts the game.
+    */
   def singlePlayerAverage(): Unit = {
     val initGridPlayer1 = GridHuman()
     val gridPlayer1 = initGridPlayer1.tryAddBoat(5).tryAddBoat(4).tryAddBoat(3).tryAddBoat(3).tryAddBoat(2)
@@ -68,6 +82,9 @@ object Battleships extends App with IntUtility {
     playRoundSingleplayer(game)
   }
 
+  /**
+    * Initializes the player and hard AI grids and starts the game.
+    */
   def singlePlayerHard(): Unit = {
     val initGridPlayer1 = GridHuman()
     val gridPlayer1 = initGridPlayer1.tryAddBoat(5).tryAddBoat(4).tryAddBoat(3).tryAddBoat(3).tryAddBoat(2)
@@ -81,6 +98,9 @@ object Battleships extends App with IntUtility {
     playRoundSingleplayer(game)
   }
 
+  /**
+    * Play a round of a singleplayer game depending on who has to play.
+    */
   def playRoundSingleplayer(gameState: GameAI):Unit = {
     gameState.currentPlayer match {
       case 1 =>
@@ -101,6 +121,9 @@ object Battleships extends App with IntUtility {
     }
   }
 
+  /**
+    * Play a round of a multiplayer game depending on who has to play.
+    */
   def playRoundMultiplayer(gameState: GameMultiplayer):Unit = {
     readLine()
     clearScreen()
@@ -130,6 +153,9 @@ object Battleships extends App with IntUtility {
 
   }
 
+  /**
+    * Initiates the multiplayer grids and starts the game.
+    */
   def multiPlayerSetup(): Unit ={
     clearScreen()
     val initGridPlayer1 = GridHuman()
@@ -146,10 +172,22 @@ object Battleships extends App with IntUtility {
     playRoundMultiplayer(game)
   }
 
+  /**
+    * Tries to initialize the game. Is used to restart the initialization if it fails.
+    * @param gridPlayer1 The first player boats grid
+    * @param gridPlayer2 The second player boats grid
+    * @return the game that will be used for each round.
+    */
   def multiPlayerTryInitialize(gridPlayer1: GridHuman, gridPlayer2: GridHuman) : GameMultiplayer = {
     multiPlayerInitialize(gridPlayer1, gridPlayer2).getOrElse(multiPlayerTryInitialize(gridPlayer1, gridPlayer2))
   }
 
+  /**
+    * Multiplayer initialization procedure that asks the players who starts. and returns the game.
+    * @param gridPlayer1 The first player boats grid
+    * @param gridPlayer2 The second player boats grid
+    * @return the game that will be used for each round or None if someone made a mistake.
+    */
   def multiPlayerInitialize(gridPlayer1: GridHuman, gridPlayer2: GridHuman) :Option[GameMultiplayer] = {
     clearScreen()
     println("Choose which player will start : \n 1: Player1, 2: Player2.")

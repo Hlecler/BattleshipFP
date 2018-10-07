@@ -4,8 +4,20 @@ import model.GridHuman
 
 import scala.io.StdIn.readLine
 
+/**
+  * The game state for the multiplayer game.
+  * @param player1BoatGrid The grid that contains the player1 boats.
+  * @param player1VisionGrid The grid that contains what the player1 knows of the player2's boats
+  * @param player2BoatGrid The grid that contains the player2 boats.
+  * @param player2VisionGrid The grid that contains what the player2 knows of the player1's boats
+  * @param currentPlayer The person that has to play this round, 1 for player1, 2 for player2.
+  */
 case class GameMultiplayer(player1BoatGrid : GridHuman, player1VisionGrid : GridHuman, player2BoatGrid : GridHuman, player2VisionGrid : GridHuman, currentPlayer : Int) extends IntUtility{
 
+  /**
+    * Check if the game has a winner or not/
+    * @return true if someone has won, false if not.
+    */
   def checkWin(): Boolean ={
     if(player1BoatGrid.cellsHit == player1BoatGrid.totalHealth) {
       println("Player 2 has won !")
@@ -18,6 +30,10 @@ case class GameMultiplayer(player1BoatGrid : GridHuman, player1VisionGrid : Grid
     else false
   }
 
+  /**
+    *
+    * @return
+    */
   def tryShooting() : (GridHuman, GridHuman) = {
     if (currentPlayer == 1){
       shootProcedure(this.player1VisionGrid,this.player2BoatGrid).getOrElse(tryShooting())
@@ -56,6 +72,14 @@ case class GameMultiplayer(player1BoatGrid : GridHuman, player1VisionGrid : Grid
     Some(verifyShot(x, y, boatGrid, visionGrid)).getOrElse(shootProcedure(visionGrid, boatGrid))
   }
 
+  /**
+    *
+    * @param x
+    * @param y
+    * @param playerBoat
+    * @param visionGrid
+    * @return
+    */
   def verifyShot(x : Int, y : Int, playerBoat : GridHuman, visionGrid : GridHuman): Option[(GridHuman, GridHuman)] = {
 
     if (playerBoat.display(y)(x) == "1") {
