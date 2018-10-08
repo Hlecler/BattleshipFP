@@ -94,21 +94,21 @@ case class GridHuman(totalHealth : Int = 0 ,cellsHit : Int = 0, display : Array[
     */
   def addBoatProcedure(boatSize : Int) : Option[GridHuman] = {
     println("\n You are about to add a boat of size " + boatSize+".")
-    println("Please select the first x coordinate of the boat between 0 and " + (10 - boatSize).toString + ".")
+    println("Please select the first x coordinate of the boat between 0 and 9.")
     val xInput = readLine()
     val x = toInt(xInput).getOrElse({println("You wrote something incorrect, restarting...")
       return None})
     x match {
-      case `x` if (x <= 10 - `boatSize`) && (x >= 0) => println("Duly noted.")
+      case `x` if (x < 10) && (x >= 0) => println("Duly noted.")
       case _ => println("You seem to have made a mistake, restarting the boat placement procedure ...")
         None
     }
-    println("Please select the first y coordinate of the boat between 0 and " + (10 - boatSize).toString + ".")
+    println("Please select the first y coordinate of the boat between 0 and 9.")
     val yInput = readLine()
     val y = toInt(yInput).getOrElse({println("You wrote something incorrect, restarting...")
       return None})
     y match {
-      case `y` if y <= 10 - `boatSize` && y >= 0 => println("Duly noted.")
+      case `y` if y < 10 && y >= 0 => println("Duly noted.")
       case _ => println("You seem to have made a mistake, restarting the boat placement procedure ...")
         return None
     }
@@ -145,25 +145,30 @@ case class GridHuman(totalHealth : Int = 0 ,cellsHit : Int = 0, display : Array[
     * @return The new grid with the cell added, or None if the boat couldn't be added.
     */
   def recursAddBoat(x : Int, y : Int, size : Int, alignment : Int, grid : GridHuman) : Option[GridHuman] = {
-    if (grid.display(x)(y) != "1") {
-      val newGrid = grid.setBoat(x,y)
-      if (size == 1){
-        println("Boat successfully added !")
-        newGrid.displayGrid()
-        Some(newGrid)
-      }
-      else{
-        if(alignment == 1) {
-
-          recursAddBoat(x+1,y,size-1,alignment, newGrid)
+    if (x >9 || y>9){
+      return None
+    }
+    else{
+      if (grid.display(y)(x) != "1") {
+        val newGrid = grid.setBoat(x,y)
+        if (size == 1){
+          println("Boat successfully added !")
+          newGrid.displayGrid()
+          Some(newGrid)
         }
         else{
-          recursAddBoat(x,y+1,size-1,alignment, newGrid)
+          if(alignment == 1) {
+
+            recursAddBoat(x+1,y,size-1,alignment, newGrid)
+          }
+          else{
+            recursAddBoat(x,y+1,size-1,alignment, newGrid)
+          }
         }
+      }else{
+        println("Boat unsuccessfully added, please try again !")
+        None
       }
-    }else{
-      println("Boat unsuccessfully added, please try again !")
-      None
     }
   }
 }

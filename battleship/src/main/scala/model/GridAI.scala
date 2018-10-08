@@ -1,5 +1,6 @@
 package model
 
+import scala.annotation.tailrec
 import scala.util.Random
 
 /**
@@ -10,9 +11,9 @@ import scala.util.Random
   * @param cellsHit The number of boats cells hit in the grid
   * @param display The array of array of strings that represents the grid.
   */
-case class GridAI(var memoryCoordinates : Array[Int] = Array(), missCount : Int = 0, totalHealth : Int = 0 ,cellsHit : Int = 0, display : Array[Array[String]] = Array.fill(10)(Array.fill(10)("0"))) extends Grid {
+case class GridAI(var memoryCoordinates : Array[Int] = Array(), missCount : Int = 0, totalHealth : Int = 0 , var cellsHit : Int = 0, display : Array[Array[String]] = Array.fill(10)(Array.fill(10)("0"))) extends Grid {
 
-  val MISSTHRESHOLD : Int = 5
+  val MISSTHRESHOLD : Int = 4
 
   /**
     * Updates the grid state.
@@ -113,9 +114,9 @@ case class GridAI(var memoryCoordinates : Array[Int] = Array(), missCount : Int 
     */
   def addBoatProcedure(boatSize: Int): Option[GridAI] = {
 
-    val x = Random.nextInt((10 - boatSize) + 1)
+    val x = Random.nextInt(10)
 
-    val y = Random.nextInt((10 - boatSize) + 1)
+    val y = Random.nextInt(10)
 
     val alignment = Random.nextInt(2) + 1
     recursAddBoat(x, y, boatSize, alignment, this)
@@ -130,22 +131,28 @@ case class GridAI(var memoryCoordinates : Array[Int] = Array(), missCount : Int 
     * @param grid The grid that will have a boat added to it.
     * @return The new grid with the cell added, or None if the boat couldn't be added.
     */
-  def recursAddBoat(x: Int, y: Int, size: Int, alignment: Int, grid: GridAI): Option[GridAI] = {
-    if (grid.display(x)(y) != "1") {
-      val newGrid = grid.setBoat(x, y)
-      if (size == 1) {
-        Some(newGrid)
-      }
-      else {
-        if (alignment == 1) {
-          recursAddBoat(x + 1, y, size - 1, alignment, newGrid)
+  @tailrec
+  private def recursAddBoat(x: Int, y: Int, size: Int, alignment: Int, grid: GridAI): Option[GridAI] = {
+    if (x >9 || y>9){
+      return None
+    }
+    else {
+      if (grid.display(y)(x) != "1") {
+        val newGrid = grid.setBoat(x, y)
+        if (size == 1) {
+          Some(newGrid)
         }
         else {
-          recursAddBoat(x, y + 1, size - 1, alignment, newGrid)
+          if (alignment == 1) {
+            recursAddBoat(x + 1, y, size - 1, alignment, newGrid)
+          }
+          else {
+            recursAddBoat(x, y + 1, size - 1, alignment, newGrid)
+          }
         }
+      } else {
+        None
       }
-    } else {
-      None
     }
   }
 }
