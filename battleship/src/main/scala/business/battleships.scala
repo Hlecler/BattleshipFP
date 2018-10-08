@@ -21,14 +21,13 @@ object Battleships extends App with IntUtility {
    */
   def gameIntro()
   {
-    println("Welcome to battleships")
-    println("Do you want to play alone, with another player or AI versus AI ?")
-    println("1: Singleplayer, 2: Multiplayer, 3: AI match")
+    println("Welcome to Battleships")
+    println("Do you want to play alone or with another player ?")
+    println("1: Singleplayer, 2: Multiplayer")
     val userChoice = readLine()
     userChoice match {
       case "1" => singlePlayerSetup()
       case "2" => multiPlayerSetup()
-      case "3" => println("Nothing yet")
       case _ => gameIntro()
     }
   }
