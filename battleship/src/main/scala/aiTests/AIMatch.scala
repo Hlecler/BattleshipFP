@@ -1,6 +1,5 @@
 package aiTests
 
-import java.io.{BufferedWriter, FileWriter}
 import model.{Grid, GridAI}
 
 

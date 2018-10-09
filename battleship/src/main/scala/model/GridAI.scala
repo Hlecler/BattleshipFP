@@ -98,14 +98,7 @@ case class GridAI(var memoryCoordinates : Array[Int] = Array(), missCount : Int 
     addBoatProcedure(boatSize).getOrElse(tryAddBoat(boatSize))
   }
 
-  /**
-    * Displays the current grid in the console.
-    */
-  def displayGrid(): Unit = {
-    print("0 : Nothing / Unknown \n1: Unharmed boat \n2: Miss \n3: Hit")
-    display.foreach(x => {println("")
-      x.foreach(y => print(y))})
-  }
+
 
   /**
     * The procedure to randomly add a boat to the grid.
@@ -134,7 +127,7 @@ case class GridAI(var memoryCoordinates : Array[Int] = Array(), missCount : Int 
   @tailrec
   private def recursAddBoat(x: Int, y: Int, size: Int, alignment: Int, grid: GridAI): Option[GridAI] = {
     if (x >9 || y>9){
-      return None
+      None
     }
     else {
       if (grid.display(y)(x) != "1") {

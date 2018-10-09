@@ -128,14 +128,6 @@ case class GridHuman(totalHealth : Int = 0 ,cellsHit : Int = 0, display : Array[
   }
 
   /**
-    * Displays the current grid in the console.
-    */
-  def displayGrid(): Unit = {
-    print("0 : Nothing / Unknown \n1: Unharmed boat \n2: Miss \n3: Hit")
-    display.foreach(x => {println("")
-      x.foreach(y => print(y))})
-  }
-  /**
     * The recursive function that adds the boat to the grid, cell by cell.
     * @param x The x coordinate of the cell that will have a boat state.
     * @param y The y coordinate of the cell that will have a boat state.
@@ -146,7 +138,7 @@ case class GridHuman(totalHealth : Int = 0 ,cellsHit : Int = 0, display : Array[
     */
   def recursAddBoat(x : Int, y : Int, size : Int, alignment : Int, grid : GridHuman) : Option[GridHuman] = {
     if (x >9 || y>9){
-      return None
+      None
     }
     else{
       if (grid.display(y)(x) != "1") {
